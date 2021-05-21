@@ -26,7 +26,7 @@
 </table>
 
 <p align="right">
-   <a class="btn btn-primary" href="index.html">Volver</a> 
+   <a class="btn btn-primary" href="consultas.html">Volver</a> 
 </p>
     
 
