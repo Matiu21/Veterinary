@@ -14,24 +14,12 @@
             <div class="form-head">Registrar</div>
 
             <div class="field-column">
-                    <div>
-                        <label for="username">Nombre de Usuario</label><span id="user_info" class="error-info"></span>
-                    </div>
-                    <div>
-                        <input name="user_name" id="user_name" type="text"
-                            class="demo-input-box">
-                    </div>
-                </div>
 
-            <div class="field-column">
-                    <div>
-                        <label for="name">Nombre del cliente</label><span id="user_info" class="error-info"></span>
-                    </div>
-                    <div>
-                        <input name="name" id="name" type="text"
-                            class="demo-input-box">
-                    </div>
-                </div>
+            <div class="user line-input">
+                <label class="lnr lnr-user"></label>
+                <input type="email" placeholder="Correo electronico" name="email">
+            </div>
+
 
             <div class="user line-input">
                 <label class="lnr lnr-user"></label>
@@ -57,29 +45,6 @@
             </div>
 
 
-        <form action="login-action.php" method="post" id="frmLogin" onSubmit="return validate();">
-            <div class="demo-table">
-
-
-                
-                <div class="field-column">
-                    <div>
-                        <label for="password">Password</label><span id="password_info" class="error-info"></span>
-                    </div>
-                    <div>
-                        <input name="password" id="password" type="password"
-                            class="demo-input-box">
-                    </div>
-                </div>
-
-                <div class=field-column>
-                    <div>
-                        <input type="submit" name="login" value="Registrar usuario"
-                        class="btnLogin"></span>
-                    </div>
-                </div>
-            </div>
-        </form>
     </div>
 </body>
 </html>
