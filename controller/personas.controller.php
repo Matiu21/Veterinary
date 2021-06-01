@@ -12,7 +12,7 @@ class PersonasController{
     public function Index(){
         require_once 'view/header4.php';
         require_once 'view/personas/personas.php';
-        require_once 'view/footer4.php';
+        require_once 'view/footer.php';
     }
     
     public function Crud(){
@@ -24,7 +24,7 @@ class PersonasController{
         
         require_once 'view/header4.php';
         require_once 'view/personas/personas-editar.php';
-        require_once 'view/footer4.php';
+        require_once 'view/footer.php';
     }
     
     public function Guardar(){
@@ -38,6 +38,9 @@ class PersonasController{
         $alm->telefono_per = $_REQUEST['telefono_per'];
         $alm->email = $_REQUEST['email'];
         $alm->Tipo = $_REQUEST['Tipo'];
+        $alm->especialidades_id_especialidades = $_REQUEST['especialidades_id_especialidades'];
+        $alm->mascota_id_mascota = $_REQUEST['mascota_id_mascota'];
+        $alm->tipoid = $_REQUEST['tipoid'];
 
         $alm->id_personas > 0 
             ? $this->model->Actualizar($alm)

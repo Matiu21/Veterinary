@@ -12,7 +12,7 @@ class HistorialController{
     public function Index(){
         require_once 'view/header2.php';
         require_once 'view/historial/historial.php';
-        require_once 'view/footer2.php';
+        require_once 'view/footer.php';
     }
     
     public function Crud(){
@@ -24,7 +24,7 @@ class HistorialController{
         
         require_once 'view/header2.php';
         require_once 'view/historial/historial-editar.php';
-        require_once 'view/footer2.php';
+        require_once 'view/footer.php';
     }
     
     public function Guardar(){
@@ -35,6 +35,8 @@ class HistorialController{
         $alm->tipo_visita = $_REQUEST['tipo_visita'];
         $alm->pago = $_REQUEST['pago'];
         $alm->causa_visita = $_REQUEST['causa_visita'];
+        $alm->id_mascota = $_REQUEST['id_mascota'];
+        $alm->idReceta = $_REQUEST['idReceta'];
 
         $alm->idhistorial > 0 
             ? $this->model->Actualizar($alm)

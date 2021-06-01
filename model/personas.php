@@ -1,4 +1,4 @@
-<?php
+ <?php
 class Personas
 {
 	private $pdo;
@@ -11,6 +11,9 @@ class Personas
     public $telefono_per;
     public $email;
     public $Tipo;
+	public $especialidades_id_especialidades;
+	public $mascota_id_mascota;
+	public $tipoid;
 
 	public function __CONSTRUCT()
 	{
@@ -82,7 +85,11 @@ class Personas
 						direccion_per            = ?,
 						telefono_per = ?,
 						email = ?,
-						Tipo = ?
+						Tipo = ?,
+						especialidades_id_especialidades = ?,
+						mascota_id_mascota = ?,
+						tipoid =?
+
 				    WHERE id_personas = ?";
 
 			$this->pdo->prepare($sql)
@@ -95,7 +102,11 @@ class Personas
                         $data->telefono_per,
                         $data->email,
                         $data->Tipo,
+                        $data->especialidades_id_especialidades,
+						$data->mascota_id_mascota,
+						$data->tipoid,
                         $data->id_personas
+
 					)
 				);
 		} catch (Exception $e) 
@@ -108,8 +119,9 @@ class Personas
 	{
 		try 
 		{
-		$sql = "INSERT INTO personas (identificacion_per,nombre_per,apellido_per,direccion_per,telefono_per,email,Tipo) 
-		        VALUES (?, ?, ?, ?, ?, ?, ?)";
+		$sql = "INSERT INTO personas (identificacion_per,nombre_per,apellido_per,direccion_per,telefono_per,email,Tipo,especialidades_id_especialidades, mascota_id_mascota,tipoid)
+
+		        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		$this->pdo->prepare($sql)
 		     ->execute(
@@ -120,7 +132,10 @@ class Personas
                     $data->direccion_per,
                     $data->telefono_per,
                     $data->email,
-                    $data->Tipo
+                    $data->Tipo,
+              	    $data->especialidades_id_especialidades,
+					$data->mascota_id_mascota,
+					$data->tipoid
                 )
 			);
 		} catch (Exception $e) 

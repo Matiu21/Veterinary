@@ -29,6 +29,16 @@
         <label>Causa de la Visita</label>
         <input type="text" name="causa_visita" value="<?php echo $alm->causa_visita; ?>" class="form-control" placeholder="Ingrese la causa de visita a la veterinaria" data-validacion-tipo="requerido|min:10" />
     </div>
+
+    <div class="form-group">
+        <label>ID de la mascota</label>
+        <input type="text" name="id_mascota" value="<?php echo $alm->id_mascota; ?>" class="form-control" placeholder="Ingrese el id de la mascota" data-validacion-tipo="requerido|min:1" />
+    </div>
+
+    <div class="form-group">
+        <label>ID de la medicina</label>
+        <input type="text" name="idReceta" value="<?php echo $alm->idReceta; ?>" class="form-control" placeholder="Ingrese el id de la receta" data-validacion-tipo="requerido|min:1" />
+    </div>
     
     <hr />
     

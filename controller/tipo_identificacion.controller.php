@@ -12,7 +12,7 @@ class tipo_identificacionController{
     public function Index(){
         require_once 'view/header6.php';
         require_once 'view/tipo_identificacion/tipo_identificacion.php';
-        require_once 'view/footer6.php';
+        require_once 'view/footer.php';
     }
     
     public function Crud(){
@@ -24,7 +24,7 @@ class tipo_identificacionController{
         
         require_once 'view/header6.php';
         require_once 'view/tipo_identificacion/tipo_identificacion-editar.php';
-        require_once 'view/footer6.php';
+        require_once 'view/footer.php';
     }
     
     public function Guardar(){

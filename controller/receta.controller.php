@@ -12,7 +12,7 @@ class RecetaController{
     public function Index(){
         require_once 'view/header5.php';
         require_once 'view/receta/receta.php';
-        require_once 'view/footer5.php';
+        require_once 'view/footer.php';
     }
     
     public function Crud(){
@@ -24,7 +24,7 @@ class RecetaController{
         
         require_once 'view/header5.php';
         require_once 'view/receta/receta-editar.php';
-        require_once 'view/footer5.php';
+        require_once 'view/footer.php';
     }
     
     public function Guardar(){

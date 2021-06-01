@@ -34,6 +34,7 @@ class Member
         $memberResult = $this->ds->select($query, $paramType, $paramArray);
         if(!empty($memberResult)) {
             $_SESSION["userId"] = $memberResult[0]["id"];
+            $_SESSION["Tipo"] = $memberResult[0]["idrol"];
             return true;
         }
     }

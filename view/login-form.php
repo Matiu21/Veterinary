@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>User Login</title>
+<title>Iniciar Sesión</title>
 <link href="./view/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -8,7 +8,7 @@
         <form action="login-action.php" method="post" id="frmLogin" onSubmit="return validate();">
             <div class="demo-table">
 
-                <div class="form-head">Login</div>
+                <div class="form-head">Iniciar Sesión</div>
                 <?php 
                 if(isset($_SESSION["errorMessage"])) {
                 ?>
@@ -19,7 +19,7 @@
                 ?>
                 <div class="field-column">
                     <div>
-                        <label for="username">Username</label><span id="user_info" class="error-info"></span>
+                        <label for="username">Nombre de Usuario</label><span id="user_info" class="error-info"></span>
                     </div>
                     <div>
                         <input name="user_name" id="user_name" type="text"
@@ -28,16 +28,20 @@
                 </div>
                 <div class="field-column">
                     <div>
-                        <label for="password">Password</label><span id="password_info" class="error-info"></span>
+                        <label for="password">Contraseña</label><span id="password_info" class="error-info"></span>
                     </div>
                     <div>
                         <input name="password" id="password" type="password"
                             class="demo-input-box">
                     </div>
                 </div>
+                <div>
+                    <div class="member-dashboard">¿No tienes sesión? <a href="./signup.php" class="signup-button"> Registrate</a>
+                     </div>
+                </div>
                 <div class=field-column>
                     <div>
-                        <input type="submit" name="login" value="Login"
+                        <input type="submit" name="login" value="Iniciar Sesión"
                         class="btnLogin"></span>
                     </div>
                 </div>

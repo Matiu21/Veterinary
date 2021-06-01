@@ -12,7 +12,7 @@ class MascotaController{
     public function Index(){
         require_once 'view/header3.php';
         require_once 'view/mascota/mascota.php';
-        require_once 'view/footer3.php';
+        require_once 'view/footer.php';
     }
     
     public function Crud(){
@@ -24,7 +24,7 @@ class MascotaController{
         
         require_once 'view/header3.php';
         require_once 'view/mascota/mascota-editar.php';
-        require_once 'view/footer3.php';
+        require_once 'view/footer.php';
     }
     
     public function Guardar(){
