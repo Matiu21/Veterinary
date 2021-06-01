@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 21-05-2021 a las 21:02:08
+-- Tiempo de generación: 01-06-2021 a las 23:24:32
 -- Versión del servidor: 10.4.17-MariaDB
 -- Versión de PHP: 8.0.2
 
@@ -31,6 +31,13 @@ CREATE TABLE `especialidades` (
   `id_especialidades` int(11) NOT NULL,
   `tipo_especialidades` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `especialidades`
+--
+
+INSERT INTO `especialidades` (`id_especialidades`, `tipo_especialidades`) VALUES
+(8, 'Oftalmología');
 
 -- --------------------------------------------------------
 
@@ -63,6 +70,13 @@ CREATE TABLE `mascota` (
   `fecha_nacimiento_mascota` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `mascota`
+--
+
+INSERT INTO `mascota` (`id_mascota`, `nombra_mascota`, `peso_mascota`, `tamaño_mascota`, `raza_mascota`, `fecha_nacimiento_mascota`) VALUES
+(4, 'Paco', '45,5', 'mediano', 'Cocker Spaniel', '2016-06-30');
+
 -- --------------------------------------------------------
 
 --
@@ -89,10 +103,18 @@ CREATE TABLE `personas` (
   `telefono_per` varchar(45) DEFAULT NULL,
   `email` varchar(45) DEFAULT NULL,
   `Tipo` varchar(45) DEFAULT NULL,
-  `especialidades_id_especialidades` int(11) NOT NULL,
-  `mascota_id_mascota` int(11) NOT NULL,
-  `Tipo identificacion_idTipo identificacion` int(11) NOT NULL
+  `especialidades_id_especialidades` int(11) DEFAULT NULL,
+  `mascota_id_mascota` int(11) DEFAULT NULL,
+  `tipoid` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `personas`
+--
+
+INSERT INTO `personas` (`id_personas`, `identificacion_per`, `nombre_per`, `apellido_per`, `direccion_per`, `telefono_per`, `email`, `Tipo`, `especialidades_id_especialidades`, `mascota_id_mascota`, `tipoid`) VALUES
+(6, 1000339129, 'Daniel Mateo', 'Cadena Sanabria', 'Calle 32 Sur #987 -54', '31054681221', 'dxnielmxteo2314@gmail.com', '1', NULL, 4, 1),
+(12, 54654654654654, 'Daniel Mateo', 'Cadena Sanabria', 'Calle 32 Sur #987 -54', '31054681221', 'dxnielmxteo2314@gmail.com', '1', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -128,15 +150,17 @@ CREATE TABLE `registered_users` (
   `display_name` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `usuarios_id_personas` varchar(255) NOT NULL
+  `usuarios_id_personas` int(11) NOT NULL,
+  `idrol` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `registered_users`
 --
 
-INSERT INTO `registered_users` (`id`, `user_name`, `display_name`, `password`, `email`, `usuarios_id_personas`) VALUES
-(4, 'prueba', 'prueba', 'c893bad68927b457dbed39460e6afd62', 'prueba@prueba.com', '');
+INSERT INTO `registered_users` (`id`, `user_name`, `display_name`, `password`, `email`, `usuarios_id_personas`, `idrol`) VALUES
+(4, 'prueba', 'prueba', 'c893bad68927b457dbed39460e6afd62', 'prueba@prueba.com', 6, 1),
+(8, 'mateo', 'mateo', 'mateo', 'mateo@mateo.com', 12, 0);
 
 -- --------------------------------------------------------
 
@@ -156,19 +180,6 @@ CREATE TABLE `tipo_identificacion` (
 INSERT INTO `tipo_identificacion` (`idtipo_identificacion`, `tipo_identificacion`) VALUES
 (1, 'Cédula de Ciudadanía'),
 (2, 'Tarjeta de identificación');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `usuarios`
---
-
-CREATE TABLE `usuarios` (
-  `idusuarios` int(11) NOT NULL,
-  `nombre_usuario` varchar(45) DEFAULT NULL,
-  `password` varchar(100) DEFAULT NULL,
-  `personas_id_personas` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Índices para tablas volcadas
@@ -208,7 +219,7 @@ ALTER TABLE `personas`
   ADD PRIMARY KEY (`id_personas`),
   ADD KEY `fk_especialidades` (`especialidades_id_especialidades`),
   ADD KEY `mascota` (`mascota_id_mascota`),
-  ADD KEY `tipo_identificacion` (`Tipo identificacion_idTipo identificacion`);
+  ADD KEY `tipoid` (`tipoid`);
 
 --
 -- Indices de la tabla `personas_has_historial`
@@ -237,13 +248,6 @@ ALTER TABLE `tipo_identificacion`
   ADD PRIMARY KEY (`idtipo_identificacion`);
 
 --
--- Indices de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`idusuarios`),
-  ADD KEY `personas_id_personas` (`personas_id_personas`);
-
---
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -251,7 +255,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `especialidades`
 --
 ALTER TABLE `especialidades`
-  MODIFY `id_especialidades` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_especialidades` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `historial`
@@ -263,13 +267,13 @@ ALTER TABLE `historial`
 -- AUTO_INCREMENT de la tabla `mascota`
 --
 ALTER TABLE `mascota`
-  MODIFY `id_mascota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_mascota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `personas`
 --
 ALTER TABLE `personas`
-  MODIFY `id_personas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_personas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `receta`
@@ -281,19 +285,13 @@ ALTER TABLE `receta`
 -- AUTO_INCREMENT de la tabla `registered_users`
 --
 ALTER TABLE `registered_users`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_identificacion`
 --
 ALTER TABLE `tipo_identificacion`
   MODIFY `idtipo_identificacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  MODIFY `idusuarios` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas
@@ -319,7 +317,7 @@ ALTER TABLE `mascota_has_personas`
 ALTER TABLE `personas`
   ADD CONSTRAINT `especialidades` FOREIGN KEY (`especialidades_id_especialidades`) REFERENCES `especialidades` (`id_especialidades`) ON UPDATE CASCADE,
   ADD CONSTRAINT `mascota` FOREIGN KEY (`mascota_id_mascota`) REFERENCES `mascota` (`id_mascota`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `tipo_identificacion` FOREIGN KEY (`Tipo identificacion_idTipo identificacion`) REFERENCES `tipo_identificacion` (`idtipo_identificacion`);
+  ADD CONSTRAINT `tipoid` FOREIGN KEY (`tipoid`) REFERENCES `tipo_identificacion` (`idtipo_identificacion`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `personas_has_historial`
@@ -329,10 +327,10 @@ ALTER TABLE `personas_has_historial`
   ADD CONSTRAINT `personas` FOREIGN KEY (`personas_id_personas`) REFERENCES `personas` (`id_personas`) ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `usuarios`
+-- Filtros para la tabla `registered_users`
 --
-ALTER TABLE `usuarios`
-  ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`personas_id_personas`) REFERENCES `personas` (`id_personas`) ON UPDATE CASCADE;
+ALTER TABLE `registered_users`
+  ADD CONSTRAINT `usuarios_id_personas` FOREIGN KEY (`usuarios_id_personas`) REFERENCES `personas` (`id_personas`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
