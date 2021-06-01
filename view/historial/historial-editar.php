@@ -40,6 +40,47 @@
         <input type="text" name="idReceta" value="<?php echo $alm->idReceta; ?>" class="form-control" placeholder="Ingrese el id de la receta" data-validacion-tipo="requerido|min:1" />
     </div>
     
+    <div class="form-group">
+    <label for="description">Mascota</label>
+<?php
+$mascota = get_mascota();
+?>
+<?php if(count($mascota)>0):?>
+
+        <?php foreach($mascota as $alm):?>
+
+  <div class="form-check">
+      <input class="form-check-input" type="checkbox" name="mascota_<?php echo $alm->id_mascota; ?>" value="id_mascota">
+      <label class="form-check-label" for="flexCheckDefault"> <?php echo $alm->nombra_mascota; ?>
+    </label>
+  </div>
+<?php endforeach; ?>
+<?php endif; ?>
+    </div>
+
+    <div class="form-group">
+    <label for="description">Receta</label>
+<?php
+$receta = get_receta();
+?>
+<?php if(count($receta)>0):?>
+
+        <?php foreach($receta as $alm):?>
+
+  <div class="form-check">
+      <input class="form-check-input" type="checkbox" name="receta_<?php echo $alm->idReceta; ?>" value="idReceta">
+      <label class="form-check-label" for="flexCheckDefault"> <?php echo $alm->tipo_medicina; ?>
+    </label>
+  </div>
+<?php endforeach; ?>
+<?php endif; ?>
+    </div>
+
+
+
+
+
+
     <hr />
     
     <div class="text-right">
@@ -54,3 +95,34 @@
         });
     })
 </script>
+
+<?php function get_mascota(){
+    $con = connect();
+    $sql = "select * from mascota";
+    $query  =$con->query($sql);
+    $data =  array();
+    if($query){
+        while($r = $query->fetch_object()){
+            $data[] = $r;
+        }
+    }
+    return $data;
+}
+
+ function get_receta(){
+    $con = connect();
+    $sql = "select * from receta";
+    $query  =$con->query($sql);
+    $data =  array();
+    if($query){
+        while($r = $query->fetch_object()){
+            $data[] = $r;
+        }
+    }
+    return $data;
+}
+
+
+function connect(){
+    return new mysqli("localhost","root","","veterinaria");
+} ?>

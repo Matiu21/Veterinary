@@ -1,11 +1,16 @@
-<?php
-class Usuarios
+ <?php
+class Personas
 {
 	private $pdo;
 
-    public $idusuarios;
-    public $nombre_usuario;
+    public $id;
+    public $user_name;
+    public $display_name;
     public $password;
+    public $email;
+    public $usuarios_id_personas;
+    public $idrol;
+
 
 	public function __CONSTRUCT()
 	{
@@ -25,7 +30,7 @@ class Usuarios
 		{
 			$result = array();
 
-			$stm = $this->pdo->prepare("SELECT * FROM usuarios");
+			$stm = $this->pdo->prepare("SELECT * FROM registered_users");
 			$stm->execute();
 
 			return $stm->fetchAll(PDO::FETCH_OBJ);
@@ -36,15 +41,15 @@ class Usuarios
 		}
 	}
 
-	public function Obtener($idusuarios)
+	public function Obtener($id)
 	{
 		try 
 		{
 			$stm = $this->pdo
-			          ->prepare("SELECT * FROM usuarios WHERE idusuarios = ?");
+			          ->prepare("SELECT * FROM registered_users WHERE id = ?");
 			          
 
-			$stm->execute(array($idusuarios));
+			$stm->execute(array($id));
 			return $stm->fetch(PDO::FETCH_OBJ);
 		} catch (Exception $e) 
 		{
@@ -52,14 +57,14 @@ class Usuarios
 		}
 	}
 
-	public function Eliminar($idusuarios)
+	public function Eliminar($id)
 	{
 		try 
 		{
 			$stm = $this->pdo
-			            ->prepare("DELETE FROM usuarios WHERE idusuarios = ?");			          
+			            ->prepare("DELETE FROM registered_users WHERE id = ?");			          
 
-			$stm->execute(array($idusuarios));
+			$stm->execute(array($id));
 		} catch (Exception $e) 
 		{
 			die($e->getMessage());
@@ -70,17 +75,28 @@ class Usuarios
 	{
 		try 
 		{
-			$sql = "UPDATE usuarios SET 
-						nombre_usuario          = ?, 
-						password        = ?
-				    WHERE idusuarios = ?";
+			$sql = "UPDATE registered_users SET 
+
+						user_name          = ?, 
+						display_name        = ?,
+                        password        = ?,
+						email            = ?,
+						usuarios_id_personas = ?,
+						idrol = ?
+
+				    WHERE id = ?";
 
 			$this->pdo->prepare($sql)
 			     ->execute(
 				    array(
-                        $data->nombre_usuario, 
+                        $data->user_name, 
+                        $data->display_name,
                         $data->password,
-                        $data->idusuarios
+                        $data->email,
+                        $data->usuarios_id_personas,
+                        $data->idrol,
+                        $data->id
+
 					)
 				);
 		} catch (Exception $e) 
@@ -89,18 +105,24 @@ class Usuarios
 		}
 	}
 
-	public function Registrar(Usuarios $data)
+	public function Registrar(Personas $data)
 	{
 		try 
 		{
-		$sql = "INSERT INTO usuarios (nombre_usuario,password) 
-		        VALUES (?, ?)";
+		$sql = "INSERT INTO registered_users (user_name,display_name,password,email,usuarios_id_personas,idrol)
+
+		        VALUES (?, ?, ?, ?, ?, ?)";
 
 		$this->pdo->prepare($sql)
 		     ->execute(
 				array(
-                    $data->nombre_usuario,
-                    $data->password
+                    $data->user_name,
+                    $data->display_name, 
+                    $data->password, 
+                    $data->email,
+                    $data->usuarios_id_personas,
+                    $data->idrol
+
                 )
 			);
 		} catch (Exception $e) 

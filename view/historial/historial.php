@@ -1,4 +1,5 @@
 <?php
+session_start();
 if(!empty($_SESSION["userId"])) {
     switch($_SESSION["Tipo"]){
         case 1:
@@ -12,7 +13,7 @@ if(!empty($_SESSION["userId"])) {
         case 3:
             require_once 'historial-admin.php';
             break;
-        default:
+        
     }
 } else {
     require_once './view/login-form.php';

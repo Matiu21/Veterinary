@@ -14,13 +14,17 @@
     <tbody>
     <?php foreach($this->model->Listar() as $r): ?>
         <tr>
-            <td><?php echo $r->nombre_usuario; ?></td>
+            <td><?php echo $r->user_name; ?></td>
+            <td><?php echo $r->display_name; ?></td>
             <td><?php echo $r->password; ?></td>
+            <td><?php echo $r->email; ?></td>
+            <td><?php echo $r->usuarios_id_personas; ?></td>
+            <td><?php echo $r->idrol == 1 ? 'Cliente' : 'Veterinario'; ?></td>
             <td>
-                <a class="btn btn-success" href="?c7=Usuarios&a7=Crud&idusuarios=<?php echo $r->idusuarios; ?>">Editar</a>
+                <a class="btn btn-success" href="?c7=Usuarios&a7=Crud&id=<?php echo $r->idusuarios; ?>">Editar</a>
             </td>
             <td>
-                <a class="btn btn-danger" onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c7=Usuarios&a7=Eliminar&idusuarios=<?php echo $r->idusuarios; ?>">Eliminar</a>
+                <a class="btn btn-danger" onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c7=Usuarios&a7=Eliminar&id=<?php echo $r->id; ?>">Eliminar</a>
             </td>
         </tr>
     <?php endforeach; ?>
